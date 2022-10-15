@@ -1,0 +1,30 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 5px;
+    margin-bottom: 10px;
+}
+
+header h1 {
+    flex: 1;
+    font-size: 15pt;
+}
+
+header h1 a {
+    text-decoration: none;
+}
+
+header .navigation ul li {
+    margin: 0 8px;
+    display: none;
+}
+@media screen and (min-width: 720px) {
+    header h1 {
+        font-size: 26px;
+    }
+    header .navigation ul li {
+        display: inline-block;
+        font-size: 20px;
+    }
+}

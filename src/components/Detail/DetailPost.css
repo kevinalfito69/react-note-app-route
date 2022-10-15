@@ -1,0 +1,35 @@
+.DetailPost__article {
+    padding-top: 20px;
+    position: relative;
+}
+.DetailPost__btn {
+    position: absolute;
+    display: flex;
+    bottom: -2;
+    right: 0;
+}
+.DetailPost__btn__toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    transition: transform 1s;
+}
+.DetailPost__btn__toggler svg {
+    width: 28px;
+    height: 28px;
+}
+.DetailPost__btn__toggler .rotate {
+    transform: rotate(90deg);
+}
+.DetailPost__btn__menu {
+    display: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+.show {
+    display: flex;
+    background-color: var(--surface);
+    padding: 5px;
+    border-radius: 5px;
+}

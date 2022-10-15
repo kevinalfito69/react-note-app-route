@@ -1,0 +1,32 @@
+.input__catatan {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    gap: 10px;
+    padding: 20px;
+}
+.input__catatan input[type="text"],
+textarea {
+    color: var(--on-surface);
+    border: none;
+    padding: 10px;
+    width: 100%;
+    background-color: var(--background);
+    outline: none;
+    caret-color: var(--primary);
+}
+.input__catatan input::placeholder,
+textarea::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.submit {
+    cursor: pointer;
+    background-color: var(--primary);
+    padding: 5px 8px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.1em;
+}

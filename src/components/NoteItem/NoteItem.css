@@ -1,0 +1,41 @@
+.NoteItem {
+    margin: 10px 0;
+    background-color: var(--surface);
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+    max-width: 400px;
+}
+.NoteItem h3 {
+    font-size: 1.3em;
+}
+.NoteItem > .NoteItem__desc {
+    color: var(--on-background-grey);
+}
+.NoteItem > .NoteItem__tanggal {
+    color: var(--pink);
+    font-size: 8pt;
+}
+@media screen and (min-width: 720px) {
+    .NoteItem {
+        justify-content: space-around;
+        min-height: 200px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .NoteItem {
+        width: 300;
+        height: 300px;
+    }
+    .NoteItem h3 {
+        font-size: 2em;
+    }
+    .NoteItem > .NoteItem__desc {
+        font-size: 1.5em;
+    }
+    .NoteItem > .NoteItem__tanggal {
+        font-size: 1.2em;
+    }
+}

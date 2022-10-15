@@ -1,0 +1,14 @@
+.search {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--surface);
+    border: none;
+    margin: 20px 0;
+    color: var(--on-surface);
+    caret-color: var(--primary);
+}
+.search:focus {
+    outline-color: var(--primary);
+    border: none;
+}

@@ -1,0 +1,14 @@
+.deleteBtn {
+    min-width: 44px;
+    max-width: 48px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteBtn:hover {
+    color: var(--pink);
+    transform: scale(1.5);
+}

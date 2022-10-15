@@ -1,0 +1,17 @@
+.archive {
+    min-width: 44px;
+    max-width: 44px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.in:hover {
+    color: chartreuse;
+    transform: scale(1.5);
+}
+.up:hover {
+    color: #ffff00;
+    transform: scale(1.5);
+}
