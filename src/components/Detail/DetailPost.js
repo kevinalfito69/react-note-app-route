@@ -1,4 +1,5 @@
 import "./DetailPost.css";
+import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import ArchiveButton from "../ArchiveButton/ArchiveButton";
@@ -24,6 +25,25 @@ const DetailPost = ({ id, title, body, archive }) => {
     //  archive handler
     const archiveHandler = (id, archive) => {
         archive ? unarchiveNote(id) : archiveNote(id);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+        });
+
+        Toast.fire({
+            icon: "success",
+            color: "white",
+            iconColor: "#8758ff",
+            background: "#2a2a2a",
+            title: "Berhasil dipindahkan",
+        });
         navigate("/");
     };
     return (
@@ -33,7 +53,7 @@ const DetailPost = ({ id, title, body, archive }) => {
             <div className="DetailPost__btn">
                 <a href="#" className="DetailPost__btn__toggler">
                     <BsThreeDots
-                        className={`dots ${isActive ? "rotate" : ""}`}
+                        className={`dots ${isActive ? "" : "rotate"}`}
                         ref={dots}
                         onClick={handleToggle}
                     />
@@ -41,7 +61,7 @@ const DetailPost = ({ id, title, body, archive }) => {
 
                 <div
                     className={`DetailPost__btn__menu  ${
-                        isActive ? "show" : ""
+                        isActive ? "" : "show"
                     }`}
                     ref={menu}
                 >

@@ -8,8 +8,8 @@ import PropTypes from "prop-types";
 const NoteList = ({ title, notes }) => {
     return (
         <>
+            <h2>{title}</h2>
             <section className="notelist">
-                <h2>{title}</h2>
                 {notes.length === 0 ? (
                     <p>Catatan kosong</p>
                 ) : (
@@ -18,6 +18,7 @@ const NoteList = ({ title, notes }) => {
                             key={note.id}
                             id={note.id}
                             title={note.title}
+                            body={note.body}
                             createdAt={note.createdAt}
                         />
                     ))

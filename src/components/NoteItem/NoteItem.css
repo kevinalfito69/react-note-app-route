@@ -1,5 +1,4 @@
 .NoteItem {
-    margin: 10px 0;
     background-color: var(--surface);
     padding: 20px;
     border-radius: 15px;
@@ -7,11 +6,24 @@
     gap: 6px;
     flex-direction: column;
     max-width: 400px;
+    width: 100%;
 }
-.NoteItem h3 {
+.NoteItem > h3 {
     font-size: 1.3em;
 }
+.NoteItem > h3 > a {
+    text-decoration: none;
+}
 .NoteItem > .NoteItem__desc {
+    width: 100%;
+    /** ... **/
+    overflow: hidden;
+    max-height: 4rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
     color: var(--on-background-grey);
 }
 .NoteItem > .NoteItem__tanggal {
