@@ -3,7 +3,12 @@ import { HiTrash } from "react-icons/hi";
 import PropTypes from "prop-types";
 const DeleteButton = ({ id, deleteHandler }) => {
     return (
-        <a className="deleteBtn" href="#" title="Delete">
+        <a
+            className="deleteBtn"
+            href="#"
+            title="Delete"
+            onClick={() => deleteHandler(id)}
+        >
             <HiTrash />
         </a>
     );

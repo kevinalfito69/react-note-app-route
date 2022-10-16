@@ -6,7 +6,7 @@ import DetailPost from "../components/Detail/DetailPost";
 const Detail = () => {
     const { id } = useParams();
     const [note, setnote] = useState(getNote(id));
-    console.log(note.title);
+
     return (
         <>
             <Navbar icon="<-" title="Back" />
