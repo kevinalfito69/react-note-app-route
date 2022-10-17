@@ -1,16 +1,14 @@
 import "./DetailPost.css";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ArchiveButton from "../ArchiveButton/ArchiveButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import { BsThreeDots } from "react-icons/bs";
 import { deleteNote, archiveNote, unarchiveNote } from "../../utils/local-data";
 import { useNavigate } from "react-router-dom";
-
+import parser from "html-react-parser";
 const DetailPost = ({ id, title, body, archive }) => {
-    const menu = useRef();
-    const dots = useRef();
     const [isActive, setActive] = useState("false");
     const handleToggle = () => {
         setActive(!isActive);
@@ -19,8 +17,35 @@ const DetailPost = ({ id, title, body, archive }) => {
     const navigate = useNavigate();
     //  delete handler
     const deleteHandler = (id) => {
-        deleteNote(id);
-        navigate("/");
+        Swal.fire({
+            title: "Apakah anda yakin?",
+            text: "Kamu tidak dapat mengembalikan catatan ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            iconColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            color: "white",
+            background: "#2a2a2a",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    toast: true,
+                    position: "top-end",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: "white",
+                    iconColor: "#8758ff",
+                    background: "#2a2a2a",
+                    title: "Berhasil dihapus",
+                });
+                deleteNote(id);
+                navigate("/");
+            }
+        });
     };
     //  archive handler
     const archiveHandler = (id, archive) => {
@@ -43,18 +68,21 @@ const DetailPost = ({ id, title, body, archive }) => {
             iconColor: "#8758ff",
             background: "#2a2a2a",
             title: "Berhasil dipindahkan",
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                navigate("/");
+            }
         });
-        navigate("/");
     };
     return (
         <article className="DetailPost__article">
             <h1>{title}</h1>
-            <p>{body}</p>
+            <p> {parser(body)}</p>
             <div className="DetailPost__btn">
                 <a href="#" className="DetailPost__btn__toggler">
                     <BsThreeDots
                         className={`dots ${isActive ? "" : "rotate"}`}
-                        ref={dots}
                         onClick={handleToggle}
                     />
                 </a>
@@ -63,7 +91,6 @@ const DetailPost = ({ id, title, body, archive }) => {
                     className={`DetailPost__btn__menu  ${
                         isActive ? "" : "show"
                     }`}
-                    ref={menu}
                 >
                     <ArchiveButton
                         archive={archive}

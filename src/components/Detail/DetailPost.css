@@ -2,6 +2,9 @@
     padding-top: 20px;
     position: relative;
 }
+.DetailPost__article h1 {
+    margin-bottom: 20px;
+}
 .DetailPost__btn {
     position: absolute;
     display: flex;

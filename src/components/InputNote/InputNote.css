@@ -7,21 +7,32 @@
     gap: 10px;
     padding: 20px;
 }
-.input__catatan input[type="text"],
-textarea {
+.input__catatan .input {
     color: var(--on-surface);
     border: none;
     padding: 10px;
     width: 100%;
-    background-color: var(--background);
+    background-color: inherit;
     outline: none;
     caret-color: var(--primary);
 }
-.input__catatan input::placeholder,
-textarea::placeholder {
-    font-family: Arial, Helvetica, sans-serif;
+.input__catatan .input[type="text"] {
+    font-size: 20pt;
+}
+.input__catatan .wrapper {
+    min-height: 250px;
+}
+.input__catatan .input.textarea {
+    outline: none;
+    padding: 20px;
+
+    caret-color: var(--primary);
+}
+.input__catatan .input::placeholder {
+    font-size: 14pt;
 }
 .submit {
+    width: 100%;
     cursor: pointer;
     background-color: var(--primary);
     padding: 5px 8px;
@@ -29,4 +40,9 @@ textarea::placeholder {
     color: white;
     border-radius: 5px;
     font-size: 1.1em;
+}
+@media screen and (min-width: 720px) {
+    .input {
+        font-size: 12pt;
+    }
 }

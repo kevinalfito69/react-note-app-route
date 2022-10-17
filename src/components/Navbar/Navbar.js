@@ -1,13 +1,11 @@
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import PropType from "prop-types";
-const Navbar = ({ icon, title }) => {
+const Navbar = ({ title }) => {
     return (
         <header>
             <h1>
-                <Link to="/">
-                    {icon} {title}
-                </Link>
+                <Link to="/">{title}</Link>
             </h1>
             <nav className="navigation">
                 <ul>

@@ -9,7 +9,7 @@ const Detail = () => {
 
     return (
         <>
-            <Navbar icon="<-" title="Back" />
+            <Navbar title="<- Back" />
             <DetailPost
                 id={note.id}
                 title={note.title}

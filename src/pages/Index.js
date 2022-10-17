@@ -6,8 +6,6 @@ import { useState } from "react";
 import { getActiveNotes } from "../utils/local-data";
 import NoteList from "../components/NoteList/NoteList";
 import { useSearchParams } from "react-router-dom";
-import DeleteButton from "../components/DeleteButton/DeleteButton";
-import ArchiveButton from "../components/ArchiveButton/ArchiveButton";
 
 const Index = () => {
     const [searchParam, setSearchParam] = useSearchParams();
@@ -16,7 +14,7 @@ const Index = () => {
     const keywordChangeHandler = (keyword) => {
         const key = keyword.target.value;
         setKeyword(key);
-        const dataKeyword = searchParam.get("keyword");
+
         setSearchParam({ title: key });
     };
     // const searchParamHandler = (keyword) => {

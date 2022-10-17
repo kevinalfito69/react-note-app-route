@@ -1,7 +1,10 @@
-.notelist {
+.NoteList__title {
+    padding: 20px 0;
+}
+.NoteList__section {
     padding-bottom: 40px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-evenly;
+    justify-content: center;
 }

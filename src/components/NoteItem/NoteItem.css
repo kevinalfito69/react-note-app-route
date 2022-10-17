@@ -32,22 +32,24 @@
 }
 @media screen and (min-width: 720px) {
     .NoteItem {
+        width: 200px;
         justify-content: space-around;
-        min-height: 200px;
     }
 }
 @media screen and (min-width: 1024px) {
     .NoteItem {
-        width: 300;
-        height: 300px;
+        max-width: 250px;
     }
     .NoteItem h3 {
-        font-size: 2em;
+        font-size: 16pt;
     }
     .NoteItem > .NoteItem__desc {
-        font-size: 1.5em;
+        font-size: 12pt;
+    }
+    .NoteItem > .NoteItem__desc {
+        -webkit-line-clamp: 3;
     }
     .NoteItem > .NoteItem__tanggal {
-        font-size: 1.2em;
+        font-size: 10pt;
     }
 }

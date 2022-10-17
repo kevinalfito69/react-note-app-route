@@ -8,8 +8,8 @@ import PropTypes from "prop-types";
 const NoteList = ({ title, notes }) => {
     return (
         <>
-            <h2>{title}</h2>
-            <section className="notelist">
+            <h2 className="NoteList__title">{title}</h2>
+            <section className="NoteList__section">
                 {notes.length === 0 ? (
                     <p>Catatan kosong</p>
                 ) : (
