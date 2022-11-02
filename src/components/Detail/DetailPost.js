@@ -26,8 +26,8 @@ const DetailPost = ({ id, title, body, archive }) => {
             cancelButtonColor: "#d33",
             iconColor: "#d33",
             confirmButtonText: "Yes, delete it!",
-            color: "white",
-            background: "#2a2a2a",
+            color: " --on-background",
+            background: " --background",
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -37,9 +37,9 @@ const DetailPost = ({ id, title, body, archive }) => {
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
-                    color: "white",
+                    color: " --on-background",
                     iconColor: "#8758ff",
-                    background: "#2a2a2a",
+                    background: " --background",
                     title: "Berhasil dihapus",
                 });
                 deleteNote(id);
@@ -64,9 +64,9 @@ const DetailPost = ({ id, title, body, archive }) => {
 
         Toast.fire({
             icon: "success",
-            color: "white",
+            color: " --on-background",
             iconColor: "#8758ff",
-            background: "#2a2a2a",
+            background: "--background",
             title: "Berhasil dipindahkan",
         }).then((result) => {
             /* Read more about handling dismissals below */

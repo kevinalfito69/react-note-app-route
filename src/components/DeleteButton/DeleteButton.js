@@ -1,16 +1,17 @@
 import "./DeleteButton.css";
 import { HiTrash } from "react-icons/hi";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const DeleteButton = ({ id, deleteHandler }) => {
     return (
-        <a
+        <Link
             className="deleteBtn"
             href="#"
             title="Delete"
             onClick={() => deleteHandler(id)}
         >
             <HiTrash />
-        </a>
+        </Link>
     );
 };
 DeleteButton.propTypes = {

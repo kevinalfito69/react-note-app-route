@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import DetailPost from "../components/Detail/DetailPost";
 const Detail = () => {
     const { id } = useParams();
-    const [note, setnote] = useState(getNote(id));
+    const [note] = useState(getNote(id));
 
     return (
         <>

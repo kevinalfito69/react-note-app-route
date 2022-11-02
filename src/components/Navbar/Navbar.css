@@ -30,4 +30,7 @@ header .navigation ul li {
     header > .navigation > ul > li > a {
         font-size: 1rem;
     }
+    .darkmode__mobile {
+        display: none;
+    }
 }
