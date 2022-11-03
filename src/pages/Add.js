@@ -5,7 +5,7 @@ import NavMobile from "../components/NavMobile/NavMobile";
 const Add = () => {
     return (
         <>
-            <Navbar icon="<--" title="Back" />
+            <Navbar title="<-- Back" />
             <InputNote />
             <NavMobile />
         </>

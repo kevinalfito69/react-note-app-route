@@ -19,6 +19,14 @@ header .navigation ul li {
     margin: 0 8px;
     display: none;
 }
+.darkmode__mobile li {
+    display: flex;
+    align-items: center;
+}
+.darkmode__mobile a {
+    min-width: 44px;
+    font-size: 16pt;
+}
 @media screen and (min-width: 720px) {
     header h1 {
         font-size: 26px;

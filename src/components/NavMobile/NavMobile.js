@@ -1,7 +1,10 @@
 import "./NavMobile.css";
 import { Link } from "react-router-dom";
 import { HiDocumentText, HiArchive } from "react-icons/hi";
+import { useContext } from "react";
+import { LocaleContext } from "../../contexts/LocaleContext";
 const NavMobile = () => {
+    const [locale] = useContext(LocaleContext);
     return (
         <footer>
             <ul className="nav__mobile__link">
@@ -10,7 +13,7 @@ const NavMobile = () => {
                         <span>
                             <HiDocumentText />
                         </span>
-                        Catatan
+                        {locale === "id" ? "Catatan" : "Note"}
                     </Link>
                 </li>
                 <li>
@@ -18,7 +21,7 @@ const NavMobile = () => {
                         <span>
                             <HiArchive />
                         </span>
-                        Arsip
+                        {locale === "id" ? "Arsip" : "Archive"}
                     </Link>
                 </li>
             </ul>

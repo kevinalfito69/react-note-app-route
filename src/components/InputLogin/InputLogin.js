@@ -1,9 +1,10 @@
 import useInput from "../../contexts/useInput";
+import "./InputLogin.css";
 const InputLogin = () => {
     const [email, onEmailChange] = useInput("");
     const [password, onPasswordChange] = useInput("");
     return (
-        <div>
+        <div className="login">
             <label for="email">Email</label>
             <input
                 type="email"

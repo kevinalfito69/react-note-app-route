@@ -4,17 +4,28 @@ import { BiNote, BiArchive, BiMoon, BiSun } from "react-icons/bi";
 import PropType from "prop-types";
 import ThemeContext from "../../contexts/ThemeContext";
 import { useContext } from "react";
+import { LocaleContext } from "../../contexts/LocaleContext";
 const Navbar = ({ title }) => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const [theme, toggleTheme] = useContext(ThemeContext);
+    const [locale, toggleLocale] = useContext(LocaleContext);
     console.log(theme);
     return (
         <header>
             <h1>
                 <Link to="/">{title}</Link>
             </h1>
-            <Link className="darkmode__mobile" onClick={toggleTheme}>
-                {theme === "light" ? <BiMoon /> : <BiSun />}
-            </Link>
+            <ul className="darkmode__mobile">
+                <li>
+                    <Link onClick={toggleTheme}>
+                        {theme === "light" ? <BiMoon /> : <BiSun />}
+                    </Link>
+                </li>
+                <li>
+                    <Link onClick={toggleLocale}>
+                        {locale === "id" ? "en" : "id"}
+                    </Link>
+                </li>
+            </ul>
             <nav className="navigation">
                 <ul>
                     <li>

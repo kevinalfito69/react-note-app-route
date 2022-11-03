@@ -1,16 +1,19 @@
-import React from "react";
+import { useContext, useMemo, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Add from "./pages/Add";
-import NavMobile from "./components/NavMobile/NavMobile";
 import NotFound from "./pages/NotFound";
 import Index from "./pages/Index";
 import Archived from "./pages/Archived";
 import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import ThemeContext from "./contexts/ThemeContext";
+import LocaleContextProvider from "./contexts/LocaleContext";
+import { AuthUserContext } from "./contexts/AuthUserContext";
 
 function App() {
-    const [theme, setTheme] = React.useState(
+    const [authUser] = useContext(AuthUserContext);
+    console.log(authUser);
+    const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
     );
 
@@ -21,30 +24,39 @@ function App() {
             return newTheme;
         });
     };
-    const themeContextValue = React.useMemo(() => {
-        return {
-            theme,
-            toggleTheme,
-        };
+    const themeContextValue = useMemo(() => {
+        return [theme, toggleTheme];
     }, [theme]);
+
+    if (authUser === null) {
+        return (
+            <Routes>
+                <Route path="/*" element={<Login />} />
+                <Route path="/register" element={<p>Halaman Register</p>} />
+            </Routes>
+        );
+    }
     return (
         <>
             <ThemeContext.Provider value={themeContextValue}>
-                <div className="app-container" data-theme={theme}>
-                    <main>
-                        {/* routes */}
-                        <Routes>
-                            <Route path="/" element={<Index />} />
-                            <Route path="/archive" element={<Archived />} />
-                            <Route path="/detail/:id" element={<Detail />} />
-                            <Route path="/add" element={<Add />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="*" element={<NotFound />} />
-                        </Routes>
-                    </main>
-
-                    <NavMobile />
-                </div>
+                <LocaleContextProvider>
+                    <div className="app-container" data-theme={theme}>
+                        <main>
+                            {/* routes */}
+                            <Routes>
+                                <Route path="/" element={<Index />} />
+                                <Route path="/archive" element={<Archived />} />
+                                <Route
+                                    path="/detail/:id"
+                                    element={<Detail />}
+                                />
+                                <Route path="/add" element={<Add />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="*" element={<NotFound />} />
+                            </Routes>
+                        </main>
+                    </div>
+                </LocaleContextProvider>
             </ThemeContext.Provider>
         </>
     );
