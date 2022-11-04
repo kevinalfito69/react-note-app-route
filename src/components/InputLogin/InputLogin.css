@@ -1,5 +1,5 @@
 .login {
-    background-color: var(--surface);
+    background-color: var(--on-surface);
     padding: 10px;
     display: flex;
     border-radius: 10px;

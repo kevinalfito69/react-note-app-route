@@ -1,26 +1,38 @@
 import useInput from "../../contexts/useInput";
+import PropTypes from "prop-types";
 import "./InputLogin.css";
-const InputLogin = () => {
+const InputLogin = ({ login }) => {
     const [email, onEmailChange] = useInput("");
     const [password, onPasswordChange] = useInput("");
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        login({
+            email: email,
+            password: password,
+        });
+    };
     return (
-        <div className="login">
-            <label for="email">Email</label>
+        <form className="login" onSubmit={onSubmitHandler}>
+            <label htmlFor="email">Email</label>
             <input
                 type="email"
                 value={email}
                 id="email"
                 onChange={onEmailChange}
             />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
                 type="password"
                 value={password}
                 id="password"
                 onChange={onPasswordChange}
             />
-        </div>
+            <button type="submit">Login</button>
+        </form>
     );
+};
+InputLogin.propTypes = {
+    login: PropTypes.func.isRequired,
 };
 
 export default InputLogin;
