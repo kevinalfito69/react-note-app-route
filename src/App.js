@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import ThemeContext from "./contexts/ThemeContext";
 import LocaleContextProvider from "./contexts/LocaleContext";
 import { AuthUserContext } from "./contexts/AuthUserContext";
+import Register from "./pages/Register";
 
 function App() {
     const [authUser] = useContext(AuthUserContext);
@@ -32,7 +33,7 @@ function App() {
         return (
             <Routes>
                 <Route path="/*" element={<Login />} />
-                <Route path="/register" element={<p>Halaman Register</p>} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         );
     }

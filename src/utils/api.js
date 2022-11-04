@@ -1,4 +1,4 @@
-const BASE_URL = "https://notes-api.dicoding.dev/v1/";
+const BASE_URL = "https://notes-api.dicoding.dev/v1";
 
 const getAccessToken = () => {
     return localStorage.getItem("accessToken");
@@ -136,12 +136,12 @@ export {
     login,
     register,
     getNotes,
+    getDetailNotes,
     getArchiveNotes,
     createNotes,
     archiveNotes,
     deleteNotes,
     getAccessToken,
     getUserLogged,
-    getAccessToken,
     putAccessToken,
 };
