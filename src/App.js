@@ -1,4 +1,4 @@
-import { , useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Add from "./pages/Add";
 import NotFound from "./pages/NotFound";
@@ -11,6 +11,7 @@ import LocaleContextProvider from "./contexts/LocaleContext";
 
 import Register from "./pages/Register";
 import { getUserLogged, putAccessToken } from "./utils/api";
+import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
     const [authUser, setAuthUser] = useState(null);
@@ -18,10 +19,15 @@ function App() {
 
     const onLoginSuccess = async ({ accessToken }) => {
         putAccessToken(accessToken);
-        const { data } = getUserLogged();
+        const { data } = await getUserLogged();
+
         setAuthUser(data);
         setInitializing(false);
     };
+
+    const authContextValue = useMemo(() => {
+        return [authUser];
+    }, [authUser]);
 
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "light"
@@ -34,19 +40,26 @@ function App() {
             return newTheme;
         });
     };
+
     const themeContextValue = useMemo(() => {
         return [theme, toggleTheme];
     }, [theme]);
     useEffect(() => {
         const getUser = async () => {
-            const { data } = getUserLogged();
+            const { data } = await getUserLogged();
+
             setAuthUser(data);
             setInitializing(false);
         };
         getUser();
-    });
+    }, []);
+    const onLogout = () => {
+        setAuthUser(null);
+        putAccessToken("");
+    };
+
     if (initializing) {
-        return <p>Loading...</p>;
+        return <p>Loading..</p>;
     }
     if (authUser === null) {
         return (
@@ -62,25 +75,33 @@ function App() {
 
     return (
         <>
-            <ThemeContext.Provider value={themeContextValue}>
-                <LocaleContextProvider>
-                    <div className="app-container" data-theme={theme}>
-                        <main>
-                            {/* routes */}
-                            <Routes>
-                                <Route path="/" element={<Index />} />
-                                <Route path="/archive" element={<Archived />} />
-                                <Route
-                                    path="/detail/:id"
-                                    element={<Detail />}
-                                />
-                                <Route path="/add" element={<Add />} />
-                                <Route path="*" element={<NotFound />} />
-                            </Routes>
-                        </main>
-                    </div>
-                </LocaleContextProvider>
-            </ThemeContext.Provider>
+            <AuthContext.Provider value={authContextValue}>
+                <ThemeContext.Provider value={themeContextValue}>
+                    <LocaleContextProvider>
+                        <div className="app-container" data-theme={theme}>
+                            <main>
+                                {/* routes */}
+                                <Routes>
+                                    <Route
+                                        path="/"
+                                        element={<Index onLogout={onLogout} />}
+                                    />
+                                    <Route
+                                        path="/archive"
+                                        element={<Archived />}
+                                    />
+                                    <Route
+                                        path="/detail/:id"
+                                        element={<Detail />}
+                                    />
+                                    <Route path="/add" element={<Add />} />
+                                    <Route path="*" element={<NotFound />} />
+                                </Routes>
+                            </main>
+                        </div>
+                    </LocaleContextProvider>
+                </ThemeContext.Provider>
+            </AuthContext.Provider>
         </>
     );
 }

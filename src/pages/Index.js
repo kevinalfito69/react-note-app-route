@@ -2,15 +2,16 @@ import AddButton from "../components/AddButton/AddButton";
 import Navbar from "../components/Navbar/Navbar";
 import NavMobile from "../components/NavMobile/NavMobile";
 import SearchBar from "../components/SearchBar/SearchBar";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getActiveNotes } from "../utils/local-data";
 import NoteList from "../components/NoteList/NoteList";
 import { useSearchParams } from "react-router-dom";
 import { LocaleContext } from "../contexts/LocaleContext";
-const Index = () => {
+import { getNotes } from "../utils/api";
+const Index = ({ onLogout }) => {
     const [locale] = useContext(LocaleContext);
     const [searchParam, setSearchParam] = useSearchParams();
-    const [notes, setnotes] = useState(getActiveNotes());
+    const [notes, setNotes] = useState([]);
     const [keyword, setKeyword] = useState("");
     const keywordChangeHandler = (keyword) => {
         const key = keyword.target.value;
@@ -18,6 +19,11 @@ const Index = () => {
 
         setSearchParam({ title: key });
     };
+    useEffect(async () => {
+        const { data } = await getNotes();
+        setNotes(data);
+        console.log(notes);
+    }, []);
     // const searchParamHandler = (keyword) => {
     //     setSearchParam(keyword);
     // };
@@ -25,9 +31,14 @@ const Index = () => {
     const dataNote = notes.filter((note) => {
         return note.title.toLowerCase().includes(keyword.toLowerCase());
     });
+
     return (
         <>
-            <Navbar title={locale === "id" ? "Catatan" : "Note"} />
+            <Navbar
+                title={locale === "id" ? "Catatan" : "Note"}
+                logout={onLogout}
+                showLogout={true}
+            />
             <main>
                 <SearchBar
                     keyword={keyword}

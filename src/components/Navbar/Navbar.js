@@ -1,14 +1,16 @@
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { BiNote, BiArchive, BiMoon, BiSun } from "react-icons/bi";
+import { BiNote, BiArchive, BiMoon, BiSun, BiLogOut } from "react-icons/bi";
 import PropType from "prop-types";
 import ThemeContext from "../../contexts/ThemeContext";
 import { useContext } from "react";
 import { LocaleContext } from "../../contexts/LocaleContext";
-const Navbar = ({ title }) => {
+import { AuthContext } from "../../contexts/AuthContext";
+const Navbar = ({ title, logout, showLogout = false }) => {
     const [theme, toggleTheme] = useContext(ThemeContext);
     const [locale, toggleLocale] = useContext(LocaleContext);
-    console.log(theme);
+    const [authUser] = useContext(AuthContext);
+
     return (
         <header>
             <h1>
@@ -16,15 +18,22 @@ const Navbar = ({ title }) => {
             </h1>
             <ul className="darkmode__mobile">
                 <li>
-                    <Link onClick={toggleTheme}>
+                    <Link title="Theme" onClick={toggleTheme}>
                         {theme === "light" ? <BiMoon /> : <BiSun />}
                     </Link>
                 </li>
                 <li>
-                    <Link onClick={toggleLocale}>
+                    <Link title="Translate" onClick={toggleLocale}>
                         {locale === "id" ? "en" : "id"}
                     </Link>
                 </li>
+
+                <li style={showLogout ? null : { display: "none" }}>
+                    <Link title="Logout" onClick={logout}>
+                        <BiLogOut />
+                    </Link>
+                </li>
+                <li>{authUser.name}</li>
             </ul>
             <nav className="navigation">
                 <ul>
@@ -54,5 +63,6 @@ const Navbar = ({ title }) => {
 };
 Navbar.propTypes = {
     title: PropType.string.isRequired,
+    logout: PropType.func.isRequired,
 };
 export default Navbar;
