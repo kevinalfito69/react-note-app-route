@@ -2,6 +2,7 @@ import "./InputNote.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { addNote } from "../../utils/local-data";
+import { createNotes } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 const InputNote = () => {
@@ -16,7 +17,7 @@ const InputNote = () => {
     };
 
     const navigate = useNavigate();
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         const data = {
             title: title,
@@ -35,7 +36,7 @@ const InputNote = () => {
             title: "Catatan berhasil dibuat",
         }).then(navigate("/"));
 
-        return addNote(data);
+        return await createNotes(data);
     };
 
     return (
@@ -50,16 +51,14 @@ const InputNote = () => {
                     onChange={onTitleChangeHandler}
                     required
                 />
-                <div className="wrapper">
-                    <p
-                        className="input textArea"
-                        contentEditable
-                        name="body"
-                        data-placeholder="Catat sesuatu..."
-                        onInput={onBodyChangeHandler}
-                        required
-                    ></p>
-                </div>
+                <div
+                    className="wrapper"
+                    contentEditable
+                    name="body"
+                    data-placeholder="Catat sesuatu..."
+                    onInput={onBodyChangeHandler}
+                    required
+                ></div>
                 <input type="submit" className="submit" value="Simpan" />
             </form>
         </section>

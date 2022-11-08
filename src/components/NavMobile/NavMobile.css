@@ -7,7 +7,7 @@ footer {
     padding: 8px;
     margin: 0;
 }
-ul {
+.nav__mobile__link {
     display: flex;
     justify-content: space-around;
     gap: 0 30px;

@@ -131,7 +131,18 @@ async function archiveNotes(id) {
     }
     return { error: false };
 }
+async function unarchiveNote(id) {
+    const response = await fetchWithToken(`${BASE_URL}/notes/${id}/unarchive`, {
+        method: "POST",
+    });
+    const responseJson = await response.json();
+    if (responseJson.status !== "success") {
+        return { error: true, data: null };
+    }
+    return { error: false, data: responseJson.data };
+}
 export {
+    unarchiveNote,
     login,
     register,
     getNotes,

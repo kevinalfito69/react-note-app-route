@@ -12,11 +12,11 @@ const Navbar = ({ title, logout, showLogout = false }) => {
     const [authUser] = useContext(AuthContext);
 
     return (
-        <header>
+        <header key={title}>
             <h1>
                 <Link to="/">{title}</Link>
             </h1>
-            <ul className="darkmode__mobile">
+            <ul className="nav__mobile">
                 <li>
                     <Link title="Theme" onClick={toggleTheme}>
                         {theme === "light" ? <BiMoon /> : <BiSun />}
@@ -33,7 +33,6 @@ const Navbar = ({ title, logout, showLogout = false }) => {
                         <BiLogOut />
                     </Link>
                 </li>
-                <li>{authUser.name}</li>
             </ul>
             <nav className="navigation">
                 <ul>
@@ -56,6 +55,12 @@ const Navbar = ({ title, logout, showLogout = false }) => {
                                 : [<BiSun />, "Light Mode"]}
                         </Link>
                     </li>
+                    <li>
+                        <Link onClick={logout}>
+                            <BiLogOut />
+                            Logout, {authUser.name}
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -63,6 +68,6 @@ const Navbar = ({ title, logout, showLogout = false }) => {
 };
 Navbar.propTypes = {
     title: PropType.string.isRequired,
-    logout: PropType.func.isRequired,
+    logout: PropType.func,
 };
 export default Navbar;

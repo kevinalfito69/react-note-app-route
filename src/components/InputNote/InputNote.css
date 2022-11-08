@@ -17,17 +17,19 @@
     caret-color: var(--primary);
 }
 .input__catatan .input[type="text"] {
-    font-size: 20pt;
+    font-size: 24pt;
 }
 .input__catatan .wrapper {
     min-height: 250px;
-}
-.input__catatan .input.textarea {
+    font-size: 24px;
+    min-height: 500px;
     outline: none;
-    padding: 20px;
-
-    caret-color: var(--primary);
+    padding: 8px 0;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
 }
+
 .input__catatan .input::placeholder {
     font-size: 14pt;
 }

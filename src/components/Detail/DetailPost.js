@@ -5,9 +5,11 @@ import { useState } from "react";
 import ArchiveButton from "../ArchiveButton/ArchiveButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import { BsThreeDots } from "react-icons/bs";
-import { deleteNote, archiveNote, unarchiveNote } from "../../utils/local-data";
+
+import { deleteNotes, archiveNotes, unarchiveNote } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-import parser from "html-react-parser";
+import React from "react";
+import HTMLReactParser from "html-react-parser";
 const DetailPost = ({ id, title, body, archive }) => {
     const [isActive, setActive] = useState("false");
     const handleToggle = () => {
@@ -42,14 +44,15 @@ const DetailPost = ({ id, title, body, archive }) => {
                     background: " --background",
                     title: "Berhasil dihapus",
                 });
-                deleteNote(id);
+                deleteNotes(id);
+                console.log(id);
                 navigate("/");
             }
         });
     };
     //  archive handler
     const archiveHandler = (id, archive) => {
-        archive ? unarchiveNote(id) : archiveNote(id);
+        archive ? unarchiveNote(id) : archiveNotes(id);
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -78,7 +81,7 @@ const DetailPost = ({ id, title, body, archive }) => {
     return (
         <article className="DetailPost__article">
             <h1>{title}</h1>
-            <p> {parser(body)}</p>
+            <p> {HTMLReactParser(`${body}`)}</p>
             <div className="DetailPost__btn">
                 <a href="#" className="DetailPost__btn__toggler">
                     <BsThreeDots

@@ -1,7 +1,7 @@
 header {
     display: flex;
     align-items: center;
-    justify-content: center;
+
     padding: 20px 10px;
     margin-bottom: 10px;
 }
@@ -19,12 +19,15 @@ header .navigation ul li {
     margin: 0 8px;
     display: none;
 }
-.darkmode__mobile li {
+.nav__mobile {
+    display: flex;
+    gap: 0;
+}
+.nav__mobile li {
     display: flex;
     align-items: center;
 }
-.darkmode__mobile a {
-    min-width: 44px;
+.nav__mobile a {
     font-size: 16pt;
 }
 @media screen and (min-width: 720px) {
@@ -38,7 +41,7 @@ header .navigation ul li {
     header > .navigation > ul > li > a {
         font-size: 1rem;
     }
-    .darkmode__mobile {
+    .nav__mobile {
         display: none;
     }
 }

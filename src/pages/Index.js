@@ -19,11 +19,13 @@ const Index = ({ onLogout }) => {
 
         setSearchParam({ title: key });
     };
-    useEffect(async () => {
-        const { data } = await getNotes();
-        setNotes(data);
-        console.log(notes);
-    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const { data } = await getNotes();
+            setNotes(data);
+        };
+        getData();
+    }, [notes]);
     // const searchParamHandler = (keyword) => {
     //     setSearchParam(keyword);
     // };
