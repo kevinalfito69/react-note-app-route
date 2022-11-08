@@ -55,7 +55,7 @@ const Navbar = ({ title, logout, showLogout = false }) => {
                                 : [<BiSun />, "Light Mode"]}
                         </Link>
                     </li>
-                    <li>
+                    <li style={showLogout ? null : { display: "none" }}>
                         <Link onClick={logout}>
                             <BiLogOut />
                             Logout, {authUser.name}

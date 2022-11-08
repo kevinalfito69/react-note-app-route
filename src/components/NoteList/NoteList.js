@@ -1,13 +1,14 @@
 import "./NoteList.css";
-
 import NoteItem from "../NoteItem/NoteItem";
-
 import AddButton from "../AddButton/AddButton";
 import PropTypes from "prop-types";
 import { LocaleContext } from "../../contexts/LocaleContext";
 import { useContext } from "react";
-const NoteList = ({ title, notes }) => {
+const NoteList = ({ title, notes, loading }) => {
     const [locale] = useContext(LocaleContext);
+    if (loading) {
+        return <p>Loading...</p>;
+    }
     return (
         <>
             <h2 className="NoteList__title">{title}</h2>
@@ -37,6 +38,7 @@ const NoteList = ({ title, notes }) => {
 NoteList.propTypes = {
     title: PropTypes.string.isRequired,
     notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    loading: PropTypes.bool.isRequired,
 };
 
 export default NoteList;

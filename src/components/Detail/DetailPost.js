@@ -5,12 +5,12 @@ import { useState } from "react";
 import ArchiveButton from "../ArchiveButton/ArchiveButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import { BsThreeDots } from "react-icons/bs";
-
+import { RotatingLines } from "react-loader-spinner";
 import { deleteNotes, archiveNotes, unarchiveNote } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import HTMLReactParser from "html-react-parser";
-const DetailPost = ({ id, title, body, archive }) => {
+const DetailPost = ({ id, title, body, archive, loading }) => {
     const [isActive, setActive] = useState("false");
     const handleToggle = () => {
         setActive(!isActive);
@@ -28,8 +28,8 @@ const DetailPost = ({ id, title, body, archive }) => {
             cancelButtonColor: "#d33",
             iconColor: "#d33",
             confirmButtonText: "Yes, delete it!",
-            color: " --on-background",
-            background: " --background",
+            color: "var(--on-background)",
+            background: "var(--surface)",
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -39,9 +39,9 @@ const DetailPost = ({ id, title, body, archive }) => {
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
-                    color: " --on-background",
+                    color: "var(--on-background)",
                     iconColor: "#8758ff",
-                    background: " --background",
+                    background: "var(--surface)",
                     title: "Berhasil dihapus",
                 });
                 deleteNotes(id);
@@ -67,9 +67,9 @@ const DetailPost = ({ id, title, body, archive }) => {
 
         Toast.fire({
             icon: "success",
-            color: " --on-background",
+            color: "var(--on-background)",
             iconColor: "#8758ff",
-            background: "--background",
+            background: "var(--surface)",
             title: "Berhasil dipindahkan",
         }).then((result) => {
             /* Read more about handling dismissals below */
@@ -78,6 +78,16 @@ const DetailPost = ({ id, title, body, archive }) => {
             }
         });
     };
+    if (loading) {
+        return (
+            <RotatingLines
+                strokeColor="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="20"
+            />
+        );
+    }
     return (
         <article className="DetailPost__article">
             <h1>{title}</h1>
@@ -107,6 +117,7 @@ const DetailPost = ({ id, title, body, archive }) => {
     );
 };
 DetailPost.propsTypes = {
+    loading: PropTypes.bool,
     id: PropTypes.string,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,

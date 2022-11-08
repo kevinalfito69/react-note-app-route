@@ -30,9 +30,9 @@ const InputNote = () => {
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
-            color: "--on-background",
+            color: "var(--on-background)",
             iconColor: "#8758ff",
-            background: "--background",
+            background: "var(--surface)",
             title: "Catatan berhasil dibuat",
         }).then(navigate("/"));
 

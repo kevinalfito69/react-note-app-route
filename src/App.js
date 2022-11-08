@@ -63,13 +63,17 @@ function App() {
     }
     if (authUser === null) {
         return (
-            <Routes>
-                <Route
-                    path="/*"
-                    element={<Login loginSuccess={onLoginSuccess} />}
-                />
-                <Route path="/register" element={<Register />} />
-            </Routes>
+            <div className="app-container" data-theme={theme}>
+                <main>
+                    <Routes>
+                        <Route
+                            path="/*"
+                            element={<Login loginSuccess={onLoginSuccess} />}
+                        />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                </main>
+            </div>
         );
     }
 

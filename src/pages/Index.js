@@ -11,6 +11,7 @@ import { getNotes } from "../utils/api";
 const Index = ({ onLogout }) => {
     const [locale] = useContext(LocaleContext);
     const [searchParam, setSearchParam] = useSearchParams();
+    const [loading, setLoading] = useState(true);
     const [notes, setNotes] = useState([]);
     const [keyword, setKeyword] = useState("");
     const keywordChangeHandler = (keyword) => {
@@ -23,6 +24,7 @@ const Index = ({ onLogout }) => {
         const getData = async () => {
             const { data } = await getNotes();
             setNotes(data);
+            setLoading(false);
         };
         getData();
     }, [notes]);
@@ -49,6 +51,7 @@ const Index = ({ onLogout }) => {
 
                 <NoteList
                     title={locale === "id" ? "Daftar catatan" : "Note list"}
+                    loading={loading}
                     label="Active Notes"
                     notes={dataNote}
                 />

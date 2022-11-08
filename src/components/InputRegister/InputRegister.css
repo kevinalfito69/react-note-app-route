@@ -1,6 +1,30 @@
-.inputRegister {
+.register {
+    background-color: var(--surface);
     display: flex;
     flex-direction: column;
     max-width: 400px;
+    padding: 20px;
     gap: 10px;
+    margin: auto;
+    border-radius: 10px;
+}
+.register__input {
+    display: flex;
+    flex-direction: column;
+}
+.register__input input {
+    background-color: var(--background);
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    caret-color: var(--primary);
+    color: var(--on-background);
+}
+.register button {
+    background-color: var(--primary);
+    padding: 6px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

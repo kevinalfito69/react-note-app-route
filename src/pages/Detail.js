@@ -7,11 +7,13 @@ const Detail = () => {
     const { id } = useParams();
 
     const [note, setNote] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
             const { error, data } = await getDetailNotes(id);
             setNote(data);
+            setLoading(false);
         };
         getData();
         return setNote("");
@@ -21,6 +23,7 @@ const Detail = () => {
         <>
             <Navbar title="<- Back" />
             <DetailPost
+                loading={loading}
                 id={note.id}
                 title={note.title}
                 body={note.body}

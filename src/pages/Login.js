@@ -1,6 +1,5 @@
 import InputLogin from "../components/InputLogin/InputLogin";
 import { login } from "../utils/api";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Login = ({ loginSuccess }) => {
@@ -12,11 +11,7 @@ const Login = ({ loginSuccess }) => {
     }
     return (
         <section className="login-page">
-            <h2>Silakan masuk untuk melanjutkan ...</h2>
             <InputLogin login={onLogin} />
-            <p>
-                Belum punya akun? <Link to="/register">Daftar di sini.</Link>
-            </p>
         </section>
     );
 };

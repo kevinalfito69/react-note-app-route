@@ -8,21 +8,27 @@ import NavMobile from "../components/NavMobile/NavMobile";
 
 const Archived = () => {
     const [locale] = useContext(LocaleContext);
+    const [loading, setLoading] = useState(true);
     const [note, setNote] = useState([]);
     useEffect(() => {
         const getData = async () => {
             const { data } = await getArchiveNotes();
             setNote(data);
+            setLoading(false);
         };
         getData();
     }, [note]);
 
     return (
         <>
-            <Navbar title={locale === "id" ? "Arsip" : "Archive"} />
+            <Navbar
+                title={locale === "id" ? "Arsip" : "Archive"}
+                showLogout={true}
+            />
             <NoteList
                 title={locale === "id" ? "Daftar arsip" : "Archive list"}
                 notes={note}
+                loading={loading}
             />
             <NavMobile />
         </>

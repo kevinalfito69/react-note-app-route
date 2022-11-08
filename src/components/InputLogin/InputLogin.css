@@ -1,10 +1,31 @@
 .login {
-    background-color: var(--on-surface);
-    padding: 10px;
-    display: flex;
+    background-color: var(--surface);
+    padding: 20px;
+    margin: auto;
+    box-sizing: border-box;
     border-radius: 10px;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 10px;
     max-width: 400px;
+}
+.login__input {
+    display: flex;
+    flex-direction: column;
+}
+.login__input input {
+    background-color: var(--background);
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    caret-color: var(--primary);
+    color: var(--on-background);
+}
+.login button {
+    background-color: var(--primary);
+    padding: 6px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

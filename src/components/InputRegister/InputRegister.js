@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import useInput from "../../contexts/useInput";
+import { Link } from "react-router-dom";
 import "./InputRegister.css";
 const InputRegister = ({ register }) => {
     const [name, onNameChange] = useInput();
@@ -18,8 +19,9 @@ const InputRegister = ({ register }) => {
         });
     };
     return (
-        <div>
-            <form onSubmit={onSubmit} className="inputRegister">
+        <form onSubmit={onSubmit} className="register">
+            <h1>Register</h1>
+            <div className="register__input">
                 <label htmlFor="name">Name</label>
                 <input
                     required
@@ -28,6 +30,8 @@ const InputRegister = ({ register }) => {
                     value={name}
                     onChange={onNameChange}
                 />
+            </div>
+            <div className="register__input">
                 <label htmlFor="email">Email</label>
                 <input
                     required
@@ -36,6 +40,8 @@ const InputRegister = ({ register }) => {
                     value={email}
                     onChange={onEmailChange}
                 />
+            </div>
+            <div className="register__input">
                 <label htmlFor="password"> Password</label>
                 <input
                     type="password"
@@ -43,6 +49,8 @@ const InputRegister = ({ register }) => {
                     value={password}
                     onChange={onPasswordChange}
                 />
+            </div>
+            <div className="register__input">
                 <label htmlFor="password2">Confirm Password</label>
                 <input
                     type="password"
@@ -50,9 +58,12 @@ const InputRegister = ({ register }) => {
                     value={password2}
                     onChange={onPasswordChange2}
                 />
-                <button type="submit">Register</button>
-            </form>
-        </div>
+            </div>
+            <button type="submit">Register</button>
+            <p>
+                Kembali ke <Link to="/">Masuk</Link>
+            </p>
+        </form>
     );
 };
 
