@@ -8,7 +8,7 @@ import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import ThemeContext from "./contexts/ThemeContext";
 import LocaleContextProvider from "./contexts/LocaleContext";
-
+import { RotatingLines } from "react-loader-spinner";
 import Register from "./pages/Register";
 import { getUserLogged, putAccessToken } from "./utils/api";
 import { AuthContext } from "./contexts/AuthContext";
@@ -59,7 +59,16 @@ function App() {
     };
 
     if (initializing) {
-        return <p>Loading..</p>;
+        return (
+            <div className="app-container" data-theme={theme}>
+                <RotatingLines
+                    strokeColor="grey"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="20"
+                />
+            </div>
+        );
     }
     if (authUser === null) {
         return (
