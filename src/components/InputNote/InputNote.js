@@ -1,7 +1,6 @@
 import "./InputNote.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import { addNote } from "../../utils/local-data";
 import { createNotes } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 

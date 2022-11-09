@@ -7,7 +7,7 @@ import DeleteButton from "../DeleteButton/DeleteButton";
 import { BsThreeDots } from "react-icons/bs";
 import { RotatingLines } from "react-loader-spinner";
 import { deleteNotes, archiveNotes, unarchiveNote } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import HTMLReactParser from "html-react-parser";
 const DetailPost = ({ id, title, body, archive, loading }) => {
@@ -93,12 +93,12 @@ const DetailPost = ({ id, title, body, archive, loading }) => {
             <h1>{title}</h1>
             <p> {HTMLReactParser(`${body}`)}</p>
             <div className="DetailPost__btn">
-                <a href="#" className="DetailPost__btn__toggler">
+                <Link to="#" className="DetailPost__btn__toggler">
                     <BsThreeDots
                         className={`dots ${isActive ? "" : "rotate"}`}
                         onClick={handleToggle}
                     />
-                </a>
+                </Link>
 
                 <div
                     className={`DetailPost__btn__menu  ${

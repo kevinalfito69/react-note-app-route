@@ -12,7 +12,7 @@ const Navbar = ({ title, logout, showLogout = false }) => {
     const [authUser] = useContext(AuthContext);
 
     return (
-        <header key={title}>
+        <header>
             <h1>
                 <Link to="/">{title}</Link>
             </h1>

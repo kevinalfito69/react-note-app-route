@@ -3,14 +3,14 @@ import Navbar from "../components/Navbar/Navbar";
 import NavMobile from "../components/NavMobile/NavMobile";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { useContext, useEffect, useState } from "react";
-import { getActiveNotes } from "../utils/local-data";
 import NoteList from "../components/NoteList/NoteList";
 import { useSearchParams } from "react-router-dom";
+import PropType from "prop-types";
 import { LocaleContext } from "../contexts/LocaleContext";
 import { getNotes } from "../utils/api";
 const Index = ({ onLogout }) => {
     const [locale] = useContext(LocaleContext);
-    const [searchParam, setSearchParam] = useSearchParams();
+    const [, setSearchParam] = useSearchParams();
     const [loading, setLoading] = useState(true);
     const [notes, setNotes] = useState([]);
     const [keyword, setKeyword] = useState("");
@@ -20,6 +20,7 @@ const Index = ({ onLogout }) => {
 
         setSearchParam({ title: key });
     };
+
     useEffect(() => {
         const getData = async () => {
             const { data } = await getNotes();
@@ -61,5 +62,7 @@ const Index = ({ onLogout }) => {
         </>
     );
 };
-
+Index.propType = {
+    onLogout: PropType.func.isRequired,
+};
 export default Index;
