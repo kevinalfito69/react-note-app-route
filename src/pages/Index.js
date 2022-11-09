@@ -29,9 +29,6 @@ const Index = ({ onLogout }) => {
         };
         getData();
     }, [notes]);
-    // const searchParamHandler = (keyword) => {
-    //     setSearchParam(keyword);
-    // };
     // filter note
     const dataNote = notes.filter((note) => {
         return note.title.toLowerCase().includes(keyword.toLowerCase());
