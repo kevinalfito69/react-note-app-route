@@ -3,6 +3,9 @@
     padding: 10px;
     border-radius: 10px;
     background-color: var(--surface);
+    background: var(--background);
+    box-shadow: inset 10px 10px 20px var(--on-background-grey),
+        inset -10px -10px 20px var(--surface);
     border: none;
     margin: 20px 0;
     color: var(--on-surface);

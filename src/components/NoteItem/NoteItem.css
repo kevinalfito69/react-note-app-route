@@ -1,9 +1,13 @@
 .NoteItem {
-    background-color: var(--surface);
     padding: 20px;
+    background: var(--background);
     border-radius: 15px;
+    z-index: auto;
+
+    box-shadow: 10px 10px 20px var(--on-background-grey),
+        -10px -10px 20px var(--surface);
     display: flex;
-    gap: 6px;
+    gap: 5px;
     flex-direction: column;
     max-width: 400px;
     width: 100%;
@@ -24,7 +28,7 @@
     display: -webkit-box;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
-    color: var(--on-background-grey);
+    color: var(--on-surface);
 }
 .NoteItem > .NoteItem__tanggal {
     color: var(--pink);
